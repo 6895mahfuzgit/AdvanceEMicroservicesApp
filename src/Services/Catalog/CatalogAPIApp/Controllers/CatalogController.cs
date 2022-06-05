@@ -13,12 +13,12 @@ namespace CatalogAPIApp.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly IProductRepository _productRepository;
-        private readonly ILogger<CatalogController> logger;
+        private readonly ILogger<CatalogController> _logger;
 
         public CatalogController(IProductRepository productRepository, ILogger<CatalogController> logger)
         {
             this._productRepository = productRepository;
-            this.logger = logger;
+            this._logger = logger;
         }
 
 
@@ -29,6 +29,25 @@ namespace CatalogAPIApp.Controllers
             var products = await _productRepository.GetProducts();
             return Ok(products);
         }
+
+        [HttpGet("{id:length(24)}", Name = "GetProduct")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProduct(string id)
+        {
+            var product = await _productRepository.GetProduct(id);
+
+            if (product == null)
+            {
+                _logger.LogError($"Product with id : {id}, not found");
+                return NotFound();  
+            }
+
+            return Ok(product);
+        }
+
+
+
 
     }
 }
