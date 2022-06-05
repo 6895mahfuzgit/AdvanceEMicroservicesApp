@@ -1,0 +1,30 @@
+1.docker pull mongo
+2.docker run -d -p 27017:27017 --name shopping-mongo mongo
+3.docker logs -f shopping-mongo
+4.docker exec -it shopping-mongo /bin/bash
+5. mongo commands
+     1.show all databases [show dbs ]
+     2.Create Database [ use CatalogDb]
+     3. db.createCollection('Products')
+     4. db.Products.insertMany(
+     [
+       {
+         "Name":"Asus Laptop",
+         "Category":"Computers",
+         "Summary":"Summary",
+         "Description":"Description",
+         "ImageFile":"ImageFile",
+         "Price":54.93
+       },
+       {
+         "Name":"HP Laptop",
+         "Category":"Computers",
+         "Summary":"Summary",
+         "Description":"Description",
+         "ImageFile":"ImageFile",
+         "Price":88.95
+       }
+     ])
+     5.db.Products.find({}).pretty()
+     6.db.Products.remove({})  
+     7.show collections
