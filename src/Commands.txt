@@ -28,3 +28,4 @@
      5.db.Products.find({}).pretty()
      6.db.Products.remove({})  
      7.show collections
+6.Install-Package MongoDB.Driver
