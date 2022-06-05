@@ -40,11 +40,34 @@ namespace CatalogAPIApp.Controllers
             if (product == null)
             {
                 _logger.LogError($"Product with id : {id}, not found");
-                return NotFound();  
+                return NotFound();
             }
 
             return Ok(product);
         }
+
+        [Route("[action]/{category}", Name = "GetproductByCategory")]
+        [HttpGet]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> GetproductByCategory(string category)
+        {
+            var products = await _productRepository.GetProductByCategory(category);
+            return Ok(products);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Product>> CreateProduct([FromBody] Product product)
+        {
+            await _productRepository.Create(product);
+            return CreatedAtRoute("GetProduct", new { id = product.Id }, product);
+        }
+
+
+
+
+
 
 
 
