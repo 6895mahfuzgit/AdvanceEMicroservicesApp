@@ -65,6 +65,22 @@ namespace CatalogAPIApp.Controllers
         }
 
 
+        [HttpPut]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> UpdateProduct([FromBody] Product product)
+        {
+            return Ok(await _productRepository.Update(product));
+
+        }
+
+
+        [HttpGet("{id:length(24)}", Name = "DeleteProduct")]
+        [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Product>>> DeleteProductById(string id)
+        {
+            return Ok( await _productRepository.Delete(id));
+        }
+
 
 
 
