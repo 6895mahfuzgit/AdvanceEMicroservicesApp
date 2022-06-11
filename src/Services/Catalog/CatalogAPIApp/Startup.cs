@@ -35,8 +35,8 @@ namespace CatalogAPIApp
             services.Configure<CatalogDatabaseSettings>(Configuration.GetSection(nameof(CatalogDatabaseSettings)));
             services.AddSingleton<ICatalogDatabaseSettings>(sp => sp.GetRequiredService<IOptions<CatalogDatabaseSettings>>().Value);
             
-            services.AddTransient<ICatalogContext, CatalogContext>();
-            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddSingleton<ICatalogContext, CatalogContext>();
+            services.AddScoped<IProductRepository, ProductRepository>();
 
 
 
