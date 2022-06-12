@@ -36,3 +36,4 @@
 11.docker exec -it aspnetrun-redis /bin/bash
 12.Install-Package Microsoft.Extensions.Caching.StackExchangeRedis -Version 5.0.1
 13.docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+14.portainer name: admin  pass: 6895mahfuzadmin
