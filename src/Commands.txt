@@ -29,3 +29,4 @@
      6.db.Products.remove({})  
      7.show collections
 6.Install-Package MongoDB.Driver
+7. docker-compose -f [docker file] -f [docker override] -d up
