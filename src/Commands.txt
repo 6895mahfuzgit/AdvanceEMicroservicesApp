@@ -30,3 +30,5 @@
      7.show collections
 6.Install-Package MongoDB.Driver
 7. docker-compose -f [docker file] -f [docker override] -d up
+8.docker pull redis
+9.docker run -d -p 6379:6379 --name aspnetrun-redis redis
