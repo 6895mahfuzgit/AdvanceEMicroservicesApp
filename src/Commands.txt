@@ -32,3 +32,6 @@
 7. docker-compose -f [docker file] -f [docker override] -d up
 8.docker pull redis
 9.docker run -d -p 6379:6379 --name aspnetrun-redis redis
+10.docker logs -f aspnetrun-redis
+11.docker exec -it aspnetrun-redis /bin/bash
+12.Install-Package Microsoft.Extensions.Caching.StackExchangeRedis -Version 5.0.1
