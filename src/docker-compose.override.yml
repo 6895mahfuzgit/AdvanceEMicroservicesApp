@@ -23,7 +23,20 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=admin / POSTGRES_PASSWORD=admin1234 / POSTGRES_DB=DiscountDb
+      - POSTGRES_USER=admin 
+      - POSTGRES_PASSWORD=admin1234 
+      - POSTGRES_DB=DiscountDb
+
+  pgdmin:
+    container_name: pgdmin
+    restart: always
+    ports:
+      - "5050:80"
+    volumes:
+      - pgdmin_data:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com 
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
 
   portainer:
     container_name: portainer
