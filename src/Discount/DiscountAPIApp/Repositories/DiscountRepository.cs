@@ -31,20 +31,39 @@ namespace DiscountAPIApp.Repositories
             return coupon;
         }
 
-        public Task<bool> CreateDiscount(Coupon coupon)
+        public async Task<bool> CreateDiscount(Coupon coupon)
         {
-            throw new System.NotImplementedException();
+            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+            var affected = await connection.ExecuteAsync("INSERT INTO coupon( productname, description, amount) values ( @productname, @description, @amount)", new { productname = coupon.ProductName, description = coupon.Description, amount = coupon.Amount });
+            if (affected == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public Task<bool> DeleteDiscount(string productName)
+        public async Task<bool> DeleteDiscount(string productName)
         {
-            throw new System.NotImplementedException();
+            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+            var affected = await connection.ExecuteAsync("DELETE Coupon WHERE ProductName=@ProductName", new { ProductName = productName });
+            if (affected == 0)
+            {
+                return false;
+            }
+            return true;
+
         }
 
 
-        public Task<bool> UpdateDiscount(Coupon coupon)
+        public async Task<bool> UpdateDiscount(Coupon coupon)
         {
-            throw new System.NotImplementedException();
+            using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
+            var affected = await connection.ExecuteAsync("UPDATE  coupon SET  productname=@productname, description=@description, amount=@amount WHERE id=@id", new { id = coupon.Id, productname = coupon.ProductName, description = coupon.Description, amount = coupon.Amount });
+            if (affected == 0)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
