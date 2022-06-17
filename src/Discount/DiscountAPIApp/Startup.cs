@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DiscountAPIApp.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,7 @@ namespace DiscountAPIApp
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddScoped<IDiscountRepository, DiscountRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
