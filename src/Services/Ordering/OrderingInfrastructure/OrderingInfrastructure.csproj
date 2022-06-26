@@ -8,4 +8,8 @@
     <ProjectReference Include="..\OrderingApplication\OrderingApplication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Presistence\" />
+  </ItemGroup>
+
 </Project>
