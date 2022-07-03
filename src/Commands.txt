@@ -39,4 +39,6 @@
 14.portainer name: admin  pass: 6895mahfuzadmin
 15.docker-compose -f docker-compose.yml -f docker-compose.override.yml down
 16.docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
-17.
+17.Install-Package MassTransit
+18.Install-Package MassTransit.RabbitMQ
+19.Install-Package MassTransit.AspNetCore
