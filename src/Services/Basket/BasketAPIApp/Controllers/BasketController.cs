@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using BasketAPIApp.Entities;
 using BasketAPIApp.Repository;
 using BasketAPIApp.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BasketAPIApp.Controllers
@@ -56,6 +55,19 @@ namespace BasketAPIApp.Controllers
             await _basketRepository.DeleteBasket(userName);
             return Ok();
         }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.Accepted)]
+        [ProducesResponseType(typeof(ShoppingCart), (int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> Checkout([FromBody] BasketCheckout checkout)
+        {
+
+            return Ok();
+        }
+
+
 
     }
 }
